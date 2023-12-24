@@ -37,14 +37,15 @@ class SearchViewController: UIViewController, UIImagePickerControllerDelegate & 
         
         let cancelAction = UIAlertAction(title: "取消", style: .cancel)
         alertController.addAction(cancelAction)
-        
-       return alertController
+        show(alertController, sender: true)
+        return alertController
+
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         print("選到一張圖片")
         if let image = info[.originalImage] as? UIImage {
-            present (switchAlert(image: image), animated: true)
+            show(switchAlert(image: image), sender: nil)
         }
         
     }
