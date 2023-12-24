@@ -9,7 +9,7 @@ import UIKit
 
 
 
-class SearchViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+class SearchViewController: UIViewController {
     
     @IBOutlet weak var picture: UIImageView!
     
@@ -37,17 +37,14 @@ class SearchViewController: UIViewController, UIImagePickerControllerDelegate & 
         
         let cancelAction = UIAlertAction(title: "取消", style: .cancel)
         alertController.addAction(cancelAction)
-        show(alertController, sender: true)
         return alertController
-
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         print("選到一張圖片")
         if let image = info[.originalImage] as? UIImage {
-            show(switchAlert(image: image), sender: nil)
+            picker.present(switchAlert(image: image), animated: true)
         }
-        
     }
     
     
@@ -63,11 +60,11 @@ class SearchViewController: UIViewController, UIImagePickerControllerDelegate & 
 //            player.play()
 //        }
 //    }
-    
-    
 }
 
-
+extension SearchViewController: UIImagePickerControllerDelegate,  UINavigationControllerDelegate {
+    
+}
 
 /*
  // MARK: - Navigation
